@@ -26,7 +26,7 @@ export default function ShopClient({ products }: { products: Product[] }) {
   const addItem = useCart((s) => s.addItem)
 
   const filtered = useMemo(() => {
-    let list = activeCategory === 'All' ? products : products.filter((p) => p.category === activeCategory)
+    const list = activeCategory === 'All' ? products : products.filter((p) => p.category === activeCategory)
     switch (sort) {
       case 'price-asc': return [...list].sort((a, b) => a.price - b.price)
       case 'price-desc': return [...list].sort((a, b) => b.price - a.price)

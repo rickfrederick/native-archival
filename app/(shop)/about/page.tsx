@@ -83,7 +83,7 @@ export default function AboutPage() {
                   className="text-lg font-light tracking-widest uppercase leading-relaxed"
                   style={{ color: 'var(--color-ivory)' }}
                 >
-                  "We make products that protect what you value most — photographs, documents, artwork, and memories."
+                  &ldquo;We make products that protect what you value most — photographs, documents, artwork, and memories.&rdquo;
                 </p>
                 <div className="w-10 h-px mx-auto mt-6" style={{ backgroundColor: 'var(--color-kraft)' }} />
               </div>

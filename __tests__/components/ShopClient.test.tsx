@@ -70,7 +70,7 @@ describe('ShopClient', () => {
     fireEvent.change(screen.getByDisplayValue('Featured'), {
       target: { value: 'price-desc' },
     })
-    // Get only the primary price spans (class contains font-medium but not line-through)
+    // Get only the primary price spans (not strikethrough compare prices)
     const priceElements = screen.getAllByText(/^\$\d+\.\d{2}$/).filter(
       el => !el.className.includes('line-through')
     )

@@ -66,9 +66,7 @@ describe('admin-auth', () => {
     })
 
     it('returns false for token created with different secret', async () => {
-      // Create token with one secret
       const token = await createAdminToken('admin@test.com')
-      // Change secret for verification
       vi.stubEnv('ADMIN_SECRET', 'different-secret')
       setMockCookie('admin_token', token)
       const result = await verifyAdminSession()
