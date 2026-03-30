@@ -42,7 +42,7 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound()
 
   const tags: string[] = (() => {
-    try { return JSON.parse(post.tags) } catch { return [] }
+    try { return JSON.parse(post.tags) as string[] } catch { return [] }
   })()
 
   return (

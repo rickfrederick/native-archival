@@ -26,7 +26,7 @@ type BlogPost = {
 export default function EditBlogForm({ post }: { post: BlogPost }) {
   const router = useRouter()
   const initialTags: string[] = (() => {
-    try { return JSON.parse(post.tags) } catch { return [] }
+    try { return JSON.parse(post.tags) as string[] } catch { return [] }
   })()
 
   const [form, setForm] = useState({

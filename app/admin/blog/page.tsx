@@ -59,7 +59,7 @@ export default async function AdminBlogPage() {
               ) : (
                 posts.map((post) => {
                   const tags: string[] = (() => {
-                    try { return JSON.parse(post.tags) } catch { return [] }
+                    try { return JSON.parse(post.tags) as string[] } catch { return [] }
                   })()
                   return (
                     <tr
