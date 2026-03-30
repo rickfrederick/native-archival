@@ -1,19 +1,20 @@
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
+import type { BlogPost } from '@prisma/client'
 
 export const metadata = {
   title: 'Blog',
   description: 'The Archival Journal — tips, guides, and stories from Native Archival.',
 }
 
-async function getBlogPosts() {
+async function getBlogPosts(): Promise<BlogPost[]> {
   try {
     return await prisma.blogPost.findMany({
       where: { published: true },
       orderBy: { publishedAt: 'desc' },
     })
   } catch {
-    return [] as never[]
+    return []
   }
 }
 

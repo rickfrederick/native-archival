@@ -2,12 +2,13 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { verifyAdminSession } from '@/lib/admin-auth'
 import { prisma } from '@/lib/prisma'
+import type { BlogPost } from '@prisma/client'
 
-async function getPosts() {
+async function getPosts(): Promise<BlogPost[]> {
   try {
     return await prisma.blogPost.findMany({ orderBy: { createdAt: 'desc' } })
   } catch {
-    return [] as never[]
+    return []
   }
 }
 

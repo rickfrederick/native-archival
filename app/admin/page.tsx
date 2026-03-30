@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { verifyAdminSession } from '@/lib/admin-auth'
 import { prisma } from '@/lib/prisma'
+import type { Order, Customer } from '@prisma/client'
 
 async function getStats() {
   try {
@@ -18,7 +19,7 @@ async function getStats() {
   }
 }
 
-async function getRecentOrders() {
+async function getRecentOrders(): Promise<(Order & { customer: Customer })[]> {
   try {
     return await prisma.order.findMany({
       take: 10,
@@ -26,7 +27,7 @@ async function getRecentOrders() {
       include: { customer: true },
     })
   } catch {
-    return [] as never[]
+    return []
   }
 }
 

@@ -3,12 +3,13 @@ import Link from 'next/link'
 import { verifyAdminSession } from '@/lib/admin-auth'
 import { prisma } from '@/lib/prisma'
 import DeleteProductForm from './DeleteProductForm'
+import type { Product } from '@prisma/client'
 
-async function getProducts() {
+async function getProducts(): Promise<Product[]> {
   try {
     return await prisma.product.findMany({ orderBy: { createdAt: 'desc' } })
   } catch {
-    return [] as never[]
+    return []
   }
 }
 

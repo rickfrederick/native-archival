@@ -2,17 +2,18 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { verifyAdminSession } from '@/lib/admin-auth'
 import { prisma } from '@/lib/prisma'
+import type { Order, Customer } from '@prisma/client'
 
 const STATUSES = ['All', 'pending', 'processing', 'shipped', 'delivered', 'cancelled']
 
-async function getOrders() {
+async function getOrders(): Promise<(Order & { customer: Customer })[]> {
   try {
     return await prisma.order.findMany({
       orderBy: { createdAt: 'desc' },
       include: { customer: true },
     })
   } catch {
-    return [] as never[]
+    return []
   }
 }
 

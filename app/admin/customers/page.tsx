@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation'
 import { verifyAdminSession } from '@/lib/admin-auth'
 import { prisma } from '@/lib/prisma'
+import type { Customer } from '@prisma/client'
 
-async function getCustomers() {
+async function getCustomers(): Promise<(Customer & { orders: { total: number }[] })[]> {
   try {
     return await prisma.customer.findMany({
       orderBy: { createdAt: 'desc' },
@@ -11,7 +12,7 @@ async function getCustomers() {
       },
     })
   } catch {
-    return [] as never[]
+    return []
   }
 }
 

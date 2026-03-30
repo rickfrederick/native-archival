@@ -1,19 +1,20 @@
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import HomeAddToCart from '@/components/HomeAddToCart'
+import type { Product, BlogPost } from '@prisma/client'
 
-async function getFeaturedProducts() {
+async function getFeaturedProducts(): Promise<Product[]> {
   try {
     return await prisma.product.findMany({
       where: { featured: true, active: true },
       take: 4,
     })
   } catch {
-    return [] as never[]
+    return []
   }
 }
 
-async function getLatestBlogPosts() {
+async function getLatestBlogPosts(): Promise<BlogPost[]> {
   try {
     return await prisma.blogPost.findMany({
       where: { published: true },
@@ -21,7 +22,7 @@ async function getLatestBlogPosts() {
       take: 3,
     })
   } catch {
-    return [] as never[]
+    return []
   }
 }
 
