@@ -1,8 +1,7 @@
 import { cookies } from 'next/headers'
 
-const ADMIN_SECRET = process.env.ADMIN_SECRET || 'dev-secret-change-in-production'
-
 export async function verifyAdminSession(): Promise<boolean> {
+  const secret = process.env.ADMIN_SECRET || 'dev-secret-change-in-production'
   const cookieStore = await cookies()
   const token = cookieStore.get('admin_token')?.value
   if (!token) return false
@@ -14,7 +13,7 @@ export async function verifyAdminSession(): Promise<boolean> {
     if (!email || !sig) return false
     const encoder = new TextEncoder()
     const key = await crypto.subtle.importKey(
-      'raw', encoder.encode(ADMIN_SECRET), { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']
+      'raw', encoder.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']
     )
     const sigBuf = Uint8Array.from(atob(sig), c => c.charCodeAt(0))
     const valid = await crypto.subtle.verify('HMAC', key, sigBuf, encoder.encode(email))
