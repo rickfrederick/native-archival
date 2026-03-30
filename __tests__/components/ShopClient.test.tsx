@@ -99,7 +99,7 @@ describe('ShopClient', () => {
     })
   })
 
-  it('displays compare price when present', () => {
+  it('displays compare price with strikethrough when present', () => {
     render(<ShopClient products={mockProducts} />)
     expect(screen.getByText('$60.00')).toBeInTheDocument()
   })
