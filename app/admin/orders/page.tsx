@@ -12,7 +12,7 @@ async function getOrders() {
       include: { customer: true },
     })
   } catch {
-    return []
+    return [] as never[]
   }
 }
 

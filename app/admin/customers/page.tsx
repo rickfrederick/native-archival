@@ -11,7 +11,7 @@ async function getCustomers() {
       },
     })
   } catch {
-    return []
+    return [] as never[]
   }
 }
 

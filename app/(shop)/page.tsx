@@ -9,7 +9,7 @@ async function getFeaturedProducts() {
       take: 4,
     })
   } catch {
-    return []
+    return [] as never[]
   }
 }
 
@@ -21,7 +21,7 @@ async function getLatestBlogPosts() {
       take: 3,
     })
   } catch {
-    return []
+    return [] as never[]
   }
 }
 

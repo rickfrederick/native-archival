@@ -13,7 +13,7 @@ async function getProducts() {
       orderBy: [{ featured: 'desc' }, { createdAt: 'desc' }],
     })
   } catch {
-    return []
+    return [] as never[]
   }
 }
 

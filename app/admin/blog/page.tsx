@@ -7,7 +7,7 @@ async function getPosts() {
   try {
     return await prisma.blogPost.findMany({ orderBy: { createdAt: 'desc' } })
   } catch {
-    return []
+    return [] as never[]
   }
 }
 

@@ -8,7 +8,7 @@ async function getProducts() {
   try {
     return await prisma.product.findMany({ orderBy: { createdAt: 'desc' } })
   } catch {
-    return []
+    return [] as never[]
   }
 }
 
