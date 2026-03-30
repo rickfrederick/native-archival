@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal: #1a1a1a;
+  --color-charcoal-light: #2d2d2d;
+  --color-ivory: #f5f0e8;
+  --color-ivory-dark: #ede8dc;
+  --color-kraft: #b8956a;
+  --color-kraft-light: #c9a87a;
+  --color-silver: #8a9099;
+  --font-sans: system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+}
