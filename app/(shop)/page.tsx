@@ -60,8 +60,8 @@ export default async function HomePage() {
               style={{ backgroundColor: 'var(--color-kraft)' }}
             />
             <h1
-              className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-widest uppercase mb-6 leading-tight"
-              style={{ color: 'var(--color-ivory)' }}
+              className="text-5xl sm:text-6xl lg:text-7xl mb-6 leading-tight"
+              style={{ color: 'var(--color-ivory)', fontFamily: 'var(--font-display)' }}
             >
               Preserve<br />What<br />Matters.
             </h1>
