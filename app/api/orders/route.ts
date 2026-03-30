@@ -1,7 +1,8 @@
 import type { NextRequest } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { validateOrderInput } from '@/lib/validation'
 
-function generateOrderNumber() {
+export function generateOrderNumber() {
   const timestamp = Date.now().toString(36).toUpperCase()
   const random = Math.random().toString(36).substring(2, 6).toUpperCase()
   return `NA-${timestamp}-${random}`
@@ -10,11 +11,12 @@ function generateOrderNumber() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { customer, items, subtotal, shipping, tax, total, shippingAddress } = body
-
-    if (!customer || !items || items.length === 0) {
-      return Response.json({ error: 'Missing required fields' }, { status: 400 })
+    const validation = validateOrderInput(body)
+    if (!validation.valid) {
+      return Response.json({ error: 'Validation failed', details: validation.errors }, { status: 400 })
     }
+
+    const { customer, items, subtotal, shipping, tax, total, shippingAddress } = body
 
     // Find or create customer
     let dbCustomer = await prisma.customer.findUnique({
