@@ -64,7 +64,7 @@ export default async function BlogPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {posts.map((post) => {
+              {posts.map((post: { id: string; title: string; slug: string; excerpt: string | null; tags: string; coverImage: string | null; publishedAt: Date | null }) => {
                 const tags = (() => {
                   try { return JSON.parse(post.tags) as string[] } catch { return [] }
                 })()
